@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  Ballworld-iOS
-//
-//  Created by Nakamura Hajime on 11/22/15.
-//
-//
-
 import UIKit
 
 class ViewController: UIViewController {

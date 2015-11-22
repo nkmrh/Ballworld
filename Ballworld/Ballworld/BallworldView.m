@@ -1,11 +1,3 @@
-//
-//  BallworldView.m
-//  Ballworld
-//
-//  Created by Nakamura Hajime on 11/22/15.
-//
-//
-
 #import "BallworldView.h"
 
 @implementation BallworldView
