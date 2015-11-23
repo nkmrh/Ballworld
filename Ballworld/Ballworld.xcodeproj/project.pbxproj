@@ -16,6 +16,17 @@
 		633102141C01F5A600A3E113 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 633102121C01F5A600A3E113 /* LaunchScreen.storyboard */; };
 		6344D0471C01FF5B00B49FE8 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 6344D0461C01FF5B00B49FE8 /* Shaders.metal */; };
 		6344D0481C01FF7C00B49FE8 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 6344D0461C01FF5B00B49FE8 /* Shaders.metal */; };
+		6344D04C1C02DB7800B49FE8 /* Matrix4.h in Headers */ = {isa = PBXBuildFile; fileRef = 6344D04A1C02DB7800B49FE8 /* Matrix4.h */; };
+		6344D04D1C02DB7800B49FE8 /* Matrix4.m in Sources */ = {isa = PBXBuildFile; fileRef = 6344D04B1C02DB7800B49FE8 /* Matrix4.m */; };
+		6344D04E1C02DB7800B49FE8 /* Matrix4.m in Sources */ = {isa = PBXBuildFile; fileRef = 6344D04B1C02DB7800B49FE8 /* Matrix4.m */; };
+		6344D0511C02DC1F00B49FE8 /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344D0501C02DC1F00B49FE8 /* Vertex.swift */; };
+		6344D0521C02DC1F00B49FE8 /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344D0501C02DC1F00B49FE8 /* Vertex.swift */; };
+		6344D0541C02DCA300B49FE8 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344D0531C02DCA300B49FE8 /* Node.swift */; };
+		6344D0551C02DCA300B49FE8 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344D0531C02DCA300B49FE8 /* Node.swift */; };
+		6344D0571C02DF1000B49FE8 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344D0561C02DF1000B49FE8 /* Triangle.swift */; };
+		6344D0581C02DF1000B49FE8 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344D0561C02DF1000B49FE8 /* Triangle.swift */; };
+		6344D05A1C02EA8A00B49FE8 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344D0591C02EA8A00B49FE8 /* Cube.swift */; };
+		6344D05B1C02EA8A00B49FE8 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344D0591C02EA8A00B49FE8 /* Cube.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +42,13 @@
 		633102131C01F5A600A3E113 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		633102151C01F5A600A3E113 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6344D0461C01FF5B00B49FE8 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		6344D04A1C02DB7800B49FE8 /* Matrix4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix4.h; sourceTree = "<group>"; };
+		6344D04B1C02DB7800B49FE8 /* Matrix4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Matrix4.m; sourceTree = "<group>"; };
+		6344D04F1C02DC1E00B49FE8 /* Ballworld-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ballworld-Bridging-Header.h"; sourceTree = "<group>"; };
+		6344D0501C02DC1F00B49FE8 /* Vertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
+		6344D0531C02DCA300B49FE8 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		6344D0561C02DF1000B49FE8 /* Triangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
+		6344D0591C02EA8A00B49FE8 /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +72,7 @@
 		632F4EDE1C01F281009AED33 = {
 			isa = PBXGroup;
 			children = (
+				6344D0491C02DB7800B49FE8 /* Matrix4 */,
 				632F4EEA1C01F281009AED33 /* Ballworld */,
 				633102081C01F5A600A3E113 /* Ballworld-iOS */,
 				632F4EE91C01F281009AED33 /* Products */,
@@ -76,6 +95,11 @@
 				632F4EED1C01F281009AED33 /* BallworldView.m */,
 				632F4EEF1C01F281009AED33 /* Info.plist */,
 				6344D0461C01FF5B00B49FE8 /* Shaders.metal */,
+				6344D0501C02DC1F00B49FE8 /* Vertex.swift */,
+				6344D04F1C02DC1E00B49FE8 /* Ballworld-Bridging-Header.h */,
+				6344D0531C02DCA300B49FE8 /* Node.swift */,
+				6344D0561C02DF1000B49FE8 /* Triangle.swift */,
+				6344D0591C02EA8A00B49FE8 /* Cube.swift */,
 			);
 			path = Ballworld;
 			sourceTree = "<group>";
@@ -93,6 +117,15 @@
 			path = "Ballworld-iOS";
 			sourceTree = "<group>";
 		};
+		6344D0491C02DB7800B49FE8 /* Matrix4 */ = {
+			isa = PBXGroup;
+			children = (
+				6344D04A1C02DB7800B49FE8 /* Matrix4.h */,
+				6344D04B1C02DB7800B49FE8 /* Matrix4.m */,
+			);
+			path = Matrix4;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -100,6 +133,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6344D04C1C02DB7800B49FE8 /* Matrix4.h in Headers */,
 				632F4EEC1C01F281009AED33 /* BallworldView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,6 +238,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6344D0471C01FF5B00B49FE8 /* Shaders.metal in Sources */,
+				6344D0541C02DCA300B49FE8 /* Node.swift in Sources */,
+				6344D0511C02DC1F00B49FE8 /* Vertex.swift in Sources */,
+				6344D0571C02DF1000B49FE8 /* Triangle.swift in Sources */,
+				6344D04D1C02DB7800B49FE8 /* Matrix4.m in Sources */,
+				6344D05A1C02EA8A00B49FE8 /* Cube.swift in Sources */,
 				632F4EEE1C01F281009AED33 /* BallworldView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,7 +252,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6344D0481C01FF7C00B49FE8 /* Shaders.metal in Sources */,
+				6344D04E1C02DB7800B49FE8 /* Matrix4.m in Sources */,
 				6331020C1C01F5A600A3E113 /* ViewController.swift in Sources */,
+				6344D0551C02DCA300B49FE8 /* Node.swift in Sources */,
+				6344D05B1C02EA8A00B49FE8 /* Cube.swift in Sources */,
+				6344D0521C02DC1F00B49FE8 /* Vertex.swift in Sources */,
+				6344D0581C02DF1000B49FE8 /* Triangle.swift in Sources */,
 				6331020A1C01F5A600A3E113 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,11 +366,15 @@
 		632F4EF31C01F281009AED33 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Ballworld/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = info.Ballworld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Ballworld/Ballworld-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = saver;
 			};
 			name = Debug;
@@ -334,11 +382,14 @@
 		632F4EF41C01F281009AED33 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Ballworld/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = info.Ballworld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Ballworld/Ballworld-Bridging-Header.h";
 				WRAPPER_EXTENSION = saver;
 			};
 			name = Release;
@@ -354,6 +405,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "info.Ballworld-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Ballworld/Ballworld-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -370,6 +422,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "info.Ballworld-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Ballworld/Ballworld-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
