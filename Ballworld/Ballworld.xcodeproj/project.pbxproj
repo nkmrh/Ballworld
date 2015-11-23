@@ -27,6 +27,8 @@
 		6344D0581C02DF1000B49FE8 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344D0561C02DF1000B49FE8 /* Triangle.swift */; };
 		6344D05A1C02EA8A00B49FE8 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344D0591C02EA8A00B49FE8 /* Cube.swift */; };
 		6344D05B1C02EA8A00B49FE8 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344D0591C02EA8A00B49FE8 /* Cube.swift */; };
+		6344D05F1C0311C500B49FE8 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344D05E1C0311C500B49FE8 /* ViewController2.swift */; };
+		6344D0601C0311C500B49FE8 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344D05E1C0311C500B49FE8 /* ViewController2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,7 @@
 		6344D0531C02DCA300B49FE8 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		6344D0561C02DF1000B49FE8 /* Triangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
 		6344D0591C02EA8A00B49FE8 /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
+		6344D05E1C0311C500B49FE8 /* ViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +116,7 @@
 				633102101C01F5A600A3E113 /* Assets.xcassets */,
 				633102121C01F5A600A3E113 /* LaunchScreen.storyboard */,
 				633102151C01F5A600A3E113 /* Info.plist */,
+				6344D05E1C0311C500B49FE8 /* ViewController2.swift */,
 			);
 			path = "Ballworld-iOS";
 			sourceTree = "<group>";
@@ -238,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6344D0471C01FF5B00B49FE8 /* Shaders.metal in Sources */,
+				6344D05F1C0311C500B49FE8 /* ViewController2.swift in Sources */,
 				6344D0541C02DCA300B49FE8 /* Node.swift in Sources */,
 				6344D0511C02DC1F00B49FE8 /* Vertex.swift in Sources */,
 				6344D0571C02DF1000B49FE8 /* Triangle.swift in Sources */,
@@ -253,6 +258,7 @@
 			files = (
 				6344D0481C01FF7C00B49FE8 /* Shaders.metal in Sources */,
 				6344D04E1C02DB7800B49FE8 /* Matrix4.m in Sources */,
+				6344D0601C0311C500B49FE8 /* ViewController2.swift in Sources */,
 				6331020C1C01F5A600A3E113 /* ViewController.swift in Sources */,
 				6344D0551C02DCA300B49FE8 /* Node.swift in Sources */,
 				6344D05B1C02EA8A00B49FE8 /* Cube.swift in Sources */,
