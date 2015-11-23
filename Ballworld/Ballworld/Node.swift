@@ -21,6 +21,8 @@ class Node {
     
     var time: CFTimeInterval = 0.0
     
+    var pointSpriteMode: Bool = false
+    
     init(name: String, vertices: Array<Vertex>, device: MTLDevice) {
         var vertexData = Array<Float>()
         for vertex in vertices {
@@ -57,7 +59,12 @@ class Node {
         memcpy(bufferPointer! + sizeof(Float) * Matrix4.numberOfElements(), projectionMatrix.raw(), sizeof(Float) * Matrix4.numberOfElements())
         renderEncoder.setVertexBuffer(uniformBuffer, offset: 0, atIndex: 1)
         
-        renderEncoder.drawPrimitives(.Triangle, vertexStart: 0, vertexCount: vertexCount, instanceCount: vertexCount / 3)
+        if pointSpriteMode {
+            renderEncoder.drawPrimitives(.Point, vertexStart: 0, vertexCount: vertexCount, instanceCount: 1)
+        } else {
+            renderEncoder.drawPrimitives(.Triangle, vertexStart: 0, vertexCount: vertexCount, instanceCount: vertexCount / 3)
+        }
+        
         renderEncoder.endEncoding()
         
         commandBuffer.presentDrawable(drawable)

@@ -7,7 +7,7 @@ class ViewController: UIViewController {
     var device: MTLDevice! = nil
     var metalLayer: CAMetalLayer! = nil
     
-    var objectToDraw: Cube!
+    var objectToDraw: Ballworld!
     
     var pipelineState: MTLRenderPipelineState! = nil
     var commandQueue: MTLCommandQueue! = nil
@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        projectionMatrix = Matrix4.makePerspectiveViewAngle(Matrix4.degreesToRad(85.0), aspectRatio: Float(CGRectGetWidth(view.bounds) / CGRectGetHeight(view.bounds)), nearZ: 0.01, farZ: 100.0)
+        projectionMatrix = Matrix4.makePerspectiveViewAngle(Matrix4.degreesToRad(20.0), aspectRatio: Float(CGRectGetWidth(view.bounds) / CGRectGetHeight(view.bounds)), nearZ: 0.01, farZ: 100.0)
         
         device = MTLCreateSystemDefaultDevice()
         
@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         metalLayer.frame = view.frame
         view.layer.addSublayer(metalLayer)
         
-        objectToDraw = Cube(device: device)
+        objectToDraw = Ballworld(device: device)
         
         let defaultLibrary = device.newDefaultLibrary()
         let vertexProgram = defaultLibrary!.newFunctionWithName("basic_vertex")
