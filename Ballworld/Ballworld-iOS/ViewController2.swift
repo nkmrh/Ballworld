@@ -32,7 +32,7 @@ class ViewController2: UIViewController {
         
         metalLayer = CAMetalLayer()
         metalLayer.device = device
-        metalLayer.pixelFormat = .BGRA8Unorm
+        metalLayer.pixelFormat = .bgra8Unorm
         metalLayer.framebufferOnly = true
         metalLayer.frame = view.layer.frame
         view.layer.addSublayer(metalLayer)
@@ -41,25 +41,25 @@ class ViewController2: UIViewController {
     func refreshVertexBuffer() {
         particleCount = 1
         let positions = [0.0, 0.0]
-        let bufferSize = sizeof(Float) * particleCount * 2
-        vertexBuffer = device.newBufferWithBytes(positions, length: bufferSize, options: MTLResourceOptions.CPUCacheModeDefaultCache)
+        let bufferSize = MemoryLayout<Float>.size * particleCount * 2
+        vertexBuffer = device.makeBuffer(bytes: positions, length: bufferSize, options: MTLResourceOptions.cpuCacheModeWriteCombined)
     }
     
     func refreshUniformBuffer() {
-        let screenSize: CGSize = UIScreen.mainScreen().bounds.size
+        let screenSize: CGSize = UIScreen.main.bounds.size
         let screenWidth = Float(screenSize.width)
         let screenHeight = Float(screenSize.height)
-        let ndcMatrix = makeOrthographicMatrix(0, right: screenWidth, bottom: 0, top: screenHeight, near: -1, far: 1)
+        let ndcMatrix = makeOrthographicMatrix(left: 0, right: screenWidth, bottom: 0, top: screenHeight, near: -1, far: 1)
         var radius = particleRadius
         var ratio = ptmRatio
         
-        let floatSize = sizeof(Float)
+        let floatSize = MemoryLayout<Float>.size
         let float4x4ByteAlignment = floatSize * 4
         let float4x4Size = floatSize * 16
         let paddingBytesSize = float4x4ByteAlignment - floatSize * 2
         let uniformsStructSize = float4x4Size + floatSize * 2 + paddingBytesSize
         
-        uniformBuffer = device.newBufferWithLength(uniformsStructSize, options: MTLResourceOptions.CPUCacheModeDefaultCache)
+        uniformBuffer = device.makeBuffer(length: uniformsStructSize, options: MTLResourceOptions.cpuCacheModeWriteCombined)
         let bufferPointer = uniformBuffer.contents()
         memcpy(bufferPointer, ndcMatrix, float4x4Size)
         memcpy(bufferPointer + float4x4Size, &ratio, floatSize)
@@ -81,23 +81,23 @@ class ViewController2: UIViewController {
     }
     
     func buildRenderPipeline() {
-        let defaultLibrary = device.newDefaultLibrary()
-        let fragmentProgram = defaultLibrary?.newFunctionWithName("basic_fragment")
-        let vertexProgram = defaultLibrary?.newFunctionWithName("particle_vertex")
+        let defaultLibrary = device.makeDefaultLibrary()
+        let fragmentProgram = defaultLibrary?.makeFunction(name: "basic_fragment")
+        let vertexProgram = defaultLibrary?.makeFunction(name: "particle_vertex")
         
         let pipelineDescriptor = MTLRenderPipelineDescriptor()
         pipelineDescriptor.vertexFunction = vertexProgram
         pipelineDescriptor.fragmentFunction = fragmentProgram
-        pipelineDescriptor.colorAttachments[0].pixelFormat = .BGRA8Unorm
+        pipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
         
         do {
-            try pipelineState = device.newRenderPipelineStateWithDescriptor(pipelineDescriptor)
+            try pipelineState = device.makeRenderPipelineState(descriptor: pipelineDescriptor)
         } catch {
             print("An error occurred \(error)")
             assert(false);
         }
         
-        commandQueue = device.newCommandQueue()
+        commandQueue = device.makeCommandQueue()
     }
     
     func render() {
@@ -105,21 +105,21 @@ class ViewController2: UIViewController {
         
         let renderPassDescriptr = MTLRenderPassDescriptor()
         renderPassDescriptr.colorAttachments[0].texture = drawable?.texture
-        renderPassDescriptr.colorAttachments[0].loadAction = .Clear
-        renderPassDescriptr.colorAttachments[0].storeAction = .Store
+        renderPassDescriptr.colorAttachments[0].loadAction = .clear
+        renderPassDescriptr.colorAttachments[0].storeAction = .store
         renderPassDescriptr.colorAttachments[0].clearColor = MTLClearColor(red: 0.0, green: 104.0/255.0, blue: 5.0/255.0, alpha: 1.0)
         
-        let commandBuffer = commandQueue.commandBuffer()
+        let commandBuffer = commandQueue.makeCommandBuffer()!
         
-        let renderEncoder = commandBuffer.renderCommandEncoderWithDescriptor(renderPassDescriptr)
+        let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptr)!
         renderEncoder.setRenderPipelineState(pipelineState)
-        renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, atIndex: 0)
-        renderEncoder.setVertexBuffer(uniformBuffer, offset: 0, atIndex: 1)
+        renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
+        renderEncoder.setVertexBuffer(uniformBuffer, offset: 0, index: 1)
         
-        renderEncoder.drawPrimitives(.Point, vertexStart: 0, vertexCount: particleCount, instanceCount: 1)
+        renderEncoder.drawPrimitives(type: .point, vertexStart: 0, vertexCount: particleCount, instanceCount: 1)
         renderEncoder.endEncoding()
         
-        commandBuffer.presentDrawable(drawable!)
+        commandBuffer.present(drawable!)
         commandBuffer.commit()
     }
 }

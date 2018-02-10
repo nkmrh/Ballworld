@@ -20,39 +20,39 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        projectionMatrix = Matrix4.makePerspectiveViewAngle(Matrix4.degreesToRad(20.0), aspectRatio: Float(CGRectGetWidth(view.bounds) / CGRectGetHeight(view.bounds)), nearZ: 0.01, farZ: 100.0)
+        projectionMatrix = Matrix4.makePerspectiveViewAngle(Matrix4.degrees(toRad: 20.0), aspectRatio: Float(view.bounds.width / view.bounds.height), nearZ: 0.01, farZ: 100.0)
         
         device = MTLCreateSystemDefaultDevice()
         
         metalLayer = CAMetalLayer()
         metalLayer.device = device
-        metalLayer.pixelFormat = .BGRA8Unorm
+        metalLayer.pixelFormat = .bgra8Unorm
         metalLayer.framebufferOnly = true
         metalLayer.frame = view.frame
         view.layer.addSublayer(metalLayer)
         
         objectToDraw = Ballworld(device: device)
         
-        let defaultLibrary = device.newDefaultLibrary()
-        let vertexProgram = defaultLibrary!.newFunctionWithName("basic_vertex")
-        let fragmentProgram = defaultLibrary!.newFunctionWithName("basic_fragment")
+        let defaultLibrary = device.makeDefaultLibrary()
+        let vertexProgram = defaultLibrary!.makeFunction(name: "basic_vertex")
+        let fragmentProgram = defaultLibrary!.makeFunction(name: "basic_fragment")
         
         let pipelineStateDescriptor = MTLRenderPipelineDescriptor()
         pipelineStateDescriptor.vertexFunction = vertexProgram
         pipelineStateDescriptor.fragmentFunction = fragmentProgram
-        pipelineStateDescriptor.colorAttachments[0].pixelFormat = .BGRA8Unorm
+        pipelineStateDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
         
         do {
-            try pipelineState = device.newRenderPipelineStateWithDescriptor(pipelineStateDescriptor)
+            try pipelineState = device.makeRenderPipelineState(descriptor: pipelineStateDescriptor)
         } catch {
             print("An error occurred \(error)")
             assert(false);
         }
         
-        commandQueue = device.newCommandQueue()
+        commandQueue = device.makeCommandQueue()
         
-        timer = CADisplayLink(target: self, selector: Selector("newFrame:"))
-        timer.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
+        timer = CADisplayLink(target: self, selector: #selector(newFrame(displayLink:)))
+        timer.add(to: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,14 +62,14 @@ class ViewController: UIViewController {
     func render() {
         let drawable = metalLayer.nextDrawable()
         
-        let worldModelMatrix = Matrix4()
+        let worldModelMatrix = Matrix4()!
         worldModelMatrix.translate(0.0, y: 0.0, z: -7.0)
-        worldModelMatrix.rotateAroundX(Matrix4.degreesToRad(25), y: 0.0, z: 0.0)
+        worldModelMatrix.rotateAroundX(Matrix4.degrees(toRad: 25), y: 0.0, z: 0.0)
         
-        objectToDraw.render(commandQueue, pipelineState: pipelineState, drawable: drawable!, parentModelViewMatrix: worldModelMatrix, projectionMatrix:projectionMatrix, clearColor: nil)
+        objectToDraw.render(commandQueue: commandQueue, pipelineState: pipelineState, drawable: drawable!, parentModelViewMatrix: worldModelMatrix, projectionMatrix:projectionMatrix, clearColor: nil)
     }
     
-    func newFrame(displayLink: CADisplayLink) {
+    @objc func newFrame(displayLink: CADisplayLink) {
         if lastFrameTimestamp == 0.0 {
             lastFrameTimestamp = displayLink.timestamp
         }
@@ -77,11 +77,11 @@ class ViewController: UIViewController {
         let elapsed: CFTimeInterval = displayLink.timestamp - lastFrameTimestamp
         lastFrameTimestamp = displayLink.timestamp
         
-        loop(elapsed)
+        loop(timeSinceLastUpdate: elapsed)
     }
     
     func loop(timeSinceLastUpdate: CFTimeInterval) {
-        objectToDraw.updateWithDelta(timeSinceLastUpdate)
+        objectToDraw.updateWithDelta(delta: timeSinceLastUpdate)
         
         autoreleasepool { () -> () in
             self.render()
